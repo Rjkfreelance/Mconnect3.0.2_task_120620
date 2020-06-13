@@ -106,6 +106,7 @@ void taskPackdatcon(void*){
   DELAY(1000);  
  }
  if(xsdwrite == 0){
-   task_CheckWiFiMqtt.resume();
+    task_Packdata_continue.stop();
+    task_CheckWiFiMqtt.resume();
  }
 }

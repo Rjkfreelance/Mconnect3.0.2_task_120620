@@ -145,7 +145,7 @@ long time_limit = 100;
 unsigned long periodSend = 10000; // loop time send 
 unsigned long last_time = 0; 
 
-String xdataContinue[23];
+String xdataContinue[25];
 int xsdwrite = 0;
 
 /*-----Additional Var---------*/
@@ -434,13 +434,16 @@ void sendmqtt()
     }
 
     //Check data in arrsy xdataContinue
+    /*
      int d =0;
       while(d<sizeof(xdataContinue)){
         Serial.println(xdataContinue[d]);
         d++;   
       }
+      */
     //Check data in arrsy xdataContinue
-     
+     //Clear array xdataContinue empty 
+     memset(xdataContinue, 0, sizeof(xdataContinue)); 
   }
   for (int i = 0; i < addrsize; i++)
   {
@@ -504,8 +507,7 @@ int checkandsendmqtt(String sdatamqtt, int write_addr)
         delay(100);
          
         if (checksendmqtt == 1) {
-          //Clear array xdataContinue empty 
-          memset(xdataContinue, 0, sizeof(xdataContinue)); 
+          
           sendsdcardtomqtt();
           checksendmqtt = 0;
         }
@@ -594,10 +596,10 @@ void setup() {
    mqttconnect();
    /*---------Task Run-----------*/
    task_CheckWiFiMqtt.start(taskCheckWiFi_and_Mqtt);
-   task_Packdata_continue.start(taskPackdatcon,NULL,102400);
+   //task_Packdata_continue.start(taskPackdatcon,NULL,102400);
    //task_Packdata_continue.start(taskPackdatcon,NULL,102400,0); 
    //task_Packdata_continue.start(taskPackdatcon,NULL,92160,0);
-   //task_Packdata_continue.start(taskPackdatcon,NULL,184320);
+   task_Packdata_continue.start(taskPackdatcon,NULL,184320);
 }
 void loop() {
    
