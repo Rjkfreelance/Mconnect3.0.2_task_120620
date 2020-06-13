@@ -596,10 +596,10 @@ void setup() {
    mqttconnect();
    /*---------Task Run-----------*/
    task_CheckWiFiMqtt.start(taskCheckWiFi_and_Mqtt);
-   //task_Packdata_continue.start(taskPackdatcon,NULL,102400);
+   task_Packdata_continue.start(taskPackdatcon,NULL,102400);
    //task_Packdata_continue.start(taskPackdatcon,NULL,102400,0); 
    //task_Packdata_continue.start(taskPackdatcon,NULL,92160,0);
-   task_Packdata_continue.start(taskPackdatcon,NULL,184320);
+   //task_Packdata_continue.start(taskPackdatcon,NULL,184320);
 }
 void loop() {
    
